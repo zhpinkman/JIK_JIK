@@ -1,0 +1,462 @@
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://unpkg.com/popper.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+
+
+<head>
+
+
+	<meta charset="UTF-8">
+	<title>JEEK JEEK</title>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+
+	<style>
+
+
+
+i {
+	cursor:pointer;
+	padding:10px 12px 8px;
+	background:#fff;
+	border-radius:50%;
+	display:inline-block;
+	margin:0 0 15px;
+	color:#aaa;
+	transition:.2s;
+}
+
+  i:hover {
+	  color:#666;
+  }
+
+  i:before {
+	  font-family:fontawesome;
+	  content:'\f004';
+	  font-style:normal;
+  }
+
+  span {
+	  position: absolute;
+	  bottom:70px;
+	  left:0;
+	  right:0;
+	  visibility: hidden;
+	  transition:.6s;
+	  z-index:-2;
+	  font-size:2px;
+	  color:transparent;
+	  font-weight:400;
+  }
+
+  i.press {
+	  animation: size .4s;
+	  color:#e23b3b;
+  }
+
+  span.press {
+	  bottom:120px;
+	  font-size:14px;
+	  visibility:visible;
+	  animation: fade 1s;
+  }
+
+  @keyframes fade {
+	  0% {color:#transparent;}
+	  50% {color:#e23b3b;}
+	  100% {color:#transparent;}
+  }
+
+  @keyframes size {
+	  0% {padding:10px 12px 8px;}
+	  50% {padding:14px 16px 12px;
+		  margin-top:-4px;}
+  100% {padding:10px 12px 8px;}
+  }
+
+  @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+  * {margin: 0; padding: 0;}
+
+
+
+  body {
+
+	  background-color: rgba(0,0,0,0);
+	  font-family: montserrat, arial, verdana;
+  }
+  #msform {
+	  width: 550px;
+	  margin: 50px auto;
+	  text-align: center;
+	  position: relative;
+  }
+  #msform fieldset {
+	  background: white;
+	  border: 0 none;
+	  border-radius: 3px;
+	  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	  padding: 20px 30px;
+	  box-sizing: border-box;
+	  width: 80%;
+	  margin: 0 10%;
+
+	  position: relative;
+  }
+  #msform fieldset:not(:first-of-type) {
+	  display: none;
+  }
+  #msform input, #msform textarea {
+	  padding: 15px;
+	  border: 1px solid #ccc;
+	  border-radius: 3px;
+	  margin-bottom: 10px;
+	  margin-left: -110px;
+	  width: 70%;
+	  box-sizing: border-box;
+	  font-family: montserrat;
+	  color: #2C3E50;
+	  font-size: 13px;
+  }
+  #msform .action-button {
+	  width: 100px;
+	  background: #27AE60;
+	  font-weight: bold;
+	  color: white;
+	  border: 0 none;
+	  border-radius: 1px;
+	  cursor: pointer;
+	  padding: 10px 5px;
+	  margin: 10px 5px;
+  }
+  #msform .action-button:hover, #msform .action-button:focus {
+	  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+  }
+  .fs-title {
+	  font-size: 15px;
+	  text-transform: uppercase;
+	  color: #2C3E50;
+	  margin-bottom: 10px;
+  }
+  .fs-subtitle {
+	  font-weight: normal;
+	  font-size: 13px;
+	  color: #666;
+	  margin-bottom: 20px;
+  }
+  #progressbar {
+	  margin-bottom: 30px;
+	  overflow: hidden;
+	  counter-reset: step;
+  }
+  #progressbar li {
+	  list-style-type: none;
+	  color: white;
+	  text-transform: uppercase;
+	  font-size: 9px;
+	  width: 33.33%;
+	  float: left;
+	  position: relative;
+  }
+  #progressbar li:before {
+	  content: counter(step);
+	  counter-increment: step;
+	  width: 20px;
+	  line-height: 20px;
+	  display: block;
+	  font-size: 10px;
+	  color: #333;
+	  background: white;
+	  border-radius: 3px;
+	  margin: 0 auto 5px auto;
+  }
+  #progressbar li:after {
+	  content: '';
+	  width: 100%;
+	  height: 2px;
+	  background: white;
+	  position: absolute;
+	  left: -50%;
+	  top: 9px;
+	  z-index: -1;
+  }
+  #progressbar li:first-child:after {
+	  content: none;
+  }
+  #progressbar li.active:before,  #progressbar li.active:after{
+	  background: #27AE60;
+	  color: white;
+  }
+  .rotate {
+	  -webkit-transform: rotate(20deg);
+	  -moz-transform: rotate(20deg);
+	  -o-transform: rotate(20deg);
+	  -ms-transform: rotate(20deg);
+	  transform: rotate(20deg);
+  }
+	html {
+	  height: 100%;
+		background-attachment: fixed !important;
+	  background:
+		  linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+  }
+	</style>
+</head>
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<a style="background:none; border:none; box-shadow:none;" href="#" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#jeek">
+				<img width="2%" height="3%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/100px-Edit_icon_%28the_Noun_Project_30184%29.svg.png" alt="jeek" style="position:absolute; top: 30px; left:10px; width: 33px;height: 35px;">
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="jeek" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">make a new jeek</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="jeek">
+					<form  action = "/jeek" method="post" style="padding:20px; margin:10px;">
+						<input type="text" name="text" placeholder="what's on your mind" required/>
+						</br>
+						<input type="text" name="mention" placeholder="tag users(seperated by spaces)"/>
+						</br>
+						<input type="text" name="tag" placeholder="make hashtags(seperated by spaces)"/>
+						</br>
+						<input style="visibility:hidden;" id="jeek_submit" type="submit" value="Jeek">
+						<label for="jeek_submit">
+							<img class="rotate"src="https://www.shareicon.net/data/128x128/2015/09/30/649008_paper_512x512.png" style="width: 50px;height: 50px;" alt="submit">
+						</label>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<a style="background:none; border:none; box-shadow:none;" href="#" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#notif">
+				<img width="2%" height="3%" src="https://image.flaticon.com/icons/svg/61/61073.svg" alt="notifications" style="position:absolute; top: 10px; right:150px; width: 33px;height: 35px;">
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="notif" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">notifications</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="notification">
+
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div id="display_name" style=" position:absolute; top:10px; left:10px;">
+</div>
+
+<form  action = "/logout" method="post">
+	<button title="are you sure??" class="next action-button" style="position:absolute; top:10px; right:10px;color: cadetblue;border-radius: 5px;width: 100px;" type="submit"> log out </button>
+</form>
+
+
+<div id="msform">
+
+	<fieldset>
+		<input title="@user,#tag" id="search_text" type="text" name="search_text" placeholder="search for users or hashtags" />
+		<input type="button" onclick="search()" class="next action-button" value="search"style="position:absolute;top:16px;left:315px;right:10px;bottom:27px;" />
+	</fieldset>
+	</div>
+		<div id = "jeek_box" style="position:absolute;top:180px;right:10px;left:-60px;bottom:10px;">
+		</div>
+
+
+<script>
+
+	setInterval(temp_function, 1000);
+
+var http3 = new XMLHttpRequest();
+var url = '/get_notifications';
+var params = 'a=a&b=b';
+http3.open('POST', url, true);
+http3.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+http3.onreadystatechange = function() {
+	if(http3.readyState == 4 && http3.status == 200) {
+		document.getElementById("notification").innerHTML = http3.responseText;
+	}
+}
+http3.send(params);
+
+
+function rejeek(jeek_id)
+{
+	var http2 = new XMLHttpRequest();
+	var url = '/rejeek';
+	var params = 'jeek_id=' + jeek_id;
+	http2.open('POST', url, true);
+	http2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	http2.onreadystatechange = function() {
+		if(http2.readyState == 4 && http2.status == 200) {
+			window.location.href = "/jeekjeek_page"
+		}
+	}
+	http2.send(params);
+}
+
+function temp_function()
+{
+	var http2 = new XMLHttpRequest();
+	var url = '/getUsername';
+	var params = 'a=a&b=b';
+	http2.open('POST', url, true);
+	http2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	http2.onreadystatechange = function() {
+		if(http2.readyState == 4 && http2.status == 200) {
+		}
+	}
+	http2.send(params);
+}
+
+var http2 = new XMLHttpRequest();
+var url = '/getUsername';
+var params = 'a=a&b=b';
+http2.open('POST', url, true)
+http2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http2.onreadystatechange = function() {
+	if(http2.readyState == 4 && http2.status == 200) {
+		if(http2.responseText == "ERROR")
+			window.location.href = "/login_page"
+		else
+			showUserJeeks(http2.responseText);
+	}
+}
+http2.send(params);
+
+
+var http = new XMLHttpRequest();
+var url = '/getName';
+var params = 'a=a&b=b';
+http.open('POST', url, true)
+http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http.onreadystatechange = function() {
+	if(http.readyState == 4 && http.status == 200) {
+		if(http2.responseText == "ERROR")
+			window.location.href = "/login_page"
+		document.getElementById("display_name").innerHTML = "hi " + "<ins>" + http.responseText + "</ins>";
+	}
+}
+http.send(params);
+
+
+function showUserJeeks(username) {
+	var http = new XMLHttpRequest();
+	var url = '/jeekjeek';
+	var params = 'search_text=' +"@"+ username;
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			document.getElementById("jeek_box").innerHTML = http.responseText;
+		}
+	}
+	http.send(params);
+}
+
+function search() {
+	var http = new XMLHttpRequest();
+	var url = '/jeekjeek';
+	var params = 'search_text=' + document.getElementById("search_text").value + '&password=zz';
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			document.getElementById("jeek_box").innerHTML = http.responseText;
+		}
+	}
+	http.send(params);
+}
+
+function like(checkbox, jeek_id)
+{
+	if(checkbox.checked)
+	{
+		document.getElementById("I"+jeek_id).src = "/like_icon";
+	}
+	else
+	{
+		document.getElementById("I"+jeek_id).src = "/dislike_icon";
+	}
+	var http = new XMLHttpRequest();
+	var url = '/like';
+	var params = 'jeek_id=' + jeek_id + '&status=' + checkbox.checked;
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			window.location.href = "/jeekjeek_page"
+		}
+	}
+	http.send(params);
+}
+
+function comment(jeek_id)
+{
+	var http = new XMLHttpRequest();
+	var url = '/comment';
+	var params = 'jeek_id=' + jeek_id + '&text=' + document.getElementById(jeek_id).value;
+	document.getElementById(jeek_id).value = "";
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			window.location.href = "/jeekjeek_page"
+		}
+	}
+	http.send(params);
+}
+
+</script>
